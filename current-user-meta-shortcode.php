@@ -23,9 +23,10 @@ function usermeta_shortcode( $atts ) {
     ), $atts ) );
 
     $user_id = get_current_user_id();
-
     $user_meta = get_user_meta( $user_id, $key, true );
 
-    return $user_meta;
+    ob_start();
+    echo $user_meta;
+    return ob_get_clean();
 }
 add_shortcode( 'usermeta', 'usermeta_shortcode' );
